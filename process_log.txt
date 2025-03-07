@@ -1,0 +1,32 @@
+INFO: ディレクトリが選択されませんでした。
+INFO: '03'フォルダを圧縮しました: C:/Users/local-moritaka/Downloads/REAL -リアル-\03.zip
+INFO: '05'フォルダを圧縮しました: C:/Users/local-moritaka/Downloads/REAL -リアル-\05.zip
+INFO: '02'フォルダを削除しました。
+INFO: '01'フォルダを圧縮しました: C:/Users/local-moritaka/Downloads/REAL -リアル-\01.zip
+INFO: '01'フォルダを削除しました。
+INFO: '04'フォルダを圧縮しました: C:/Users/local-moritaka/Downloads/REAL -リアル-\04.zip
+INFO: '14'フォルダを圧縮しました: C:/Users/local-moritaka/Downloads/怪獣8号 v14\14.zip
+INFO: '14'フォルダを削除しました。
+INFO: '03'フォルダを圧縮しました: C:/Users/local-moritaka/Downloads/はたらく細胞\03.zip
+INFO: '02'フォルダを圧縮しました: C:/Users/local-moritaka/Downloads/はたらく細胞\02.zip
+INFO: '02'フォルダを削除しました。
+INFO: '01'フォルダを圧縮しました: C:/Users/local-moritaka/Downloads/はたらく細胞\01.zip
+INFO: '05'フォルダを圧縮しました: C:/Users/local-moritaka/Downloads/はたらく細胞\05.zip
+INFO: '08'フォルダを圧縮しました: C:/Users/local-moritaka/Downloads/13DL.me_Hataraku Saibou BLACK vol 01-08\08.zip
+INFO: '06'フォルダを圧縮しました: C:/Users/local-moritaka/Downloads/13DL.me_Hataraku Saibou BLACK vol 01-08\06.zip
+INFO: '08'フォルダを削除しました。
+INFO: '06'フォルダを削除しました。
+INFO: '07'フォルダを圧縮しました: C:/Users/local-moritaka/Downloads/13DL.me_Hataraku Saibou BLACK vol 01-08\07.zip
+INFO: '07'フォルダを削除しました。
+INFO: '01'フォルダを圧縮しました: C:/Users/local-moritaka/Downloads/13DL.me_Hataraku Saibou BLACK vol 01-08\01.zip
+INFO: '02'フォルダを圧縮しました: C:/Users/local-moritaka/Downloads/13DL.me_Hataraku Saibou BLACK vol 01-08\02.zip
+INFO: '09'フォルダを圧縮しました: C:/Users/local-moritaka/Downloads/Okinawa de Suki ni Natta ko vol 01-09\09.zip
+INFO: '09'フォルダを削除しました。
+INFO: '08'フォルダを圧縮しました: C:/Users/local-moritaka/Downloads/Okinawa de Suki ni Natta ko vol 01-09\08.zip
+INFO: '08'フォルダを削除しました。
+INFO: '07'フォルダを圧縮しました: C:/Users/local-moritaka/Downloads/Okinawa de Suki ni Natta ko vol 01-09\07.zip
+INFO: '07'フォルダを削除しました。
+INFO: '17'フォルダを圧縮しました: C:/Users/local-moritaka/Downloads/ウマ娘 シンデレラグレイ v17\17.zip
+INFO: '17'フォルダを削除しました。
+INFO: '18'フォルダを圧縮しました: C:/Users/local-moritaka/Downloads/DLRAW.TO_JuujikanoRokunin vol 01-19\18.zip
+INFO: '19'フォルダを削除しました。
