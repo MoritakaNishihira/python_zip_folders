@@ -5,11 +5,11 @@ from concurrent.futures import ThreadPoolExecutor
 from tkinter import Tk
 from tkinter.filedialog import askdirectory
 import traceback
-from tqdm import tqdm  # 進捗バーを表示するためのライブラリ
+import queue
 
 
 def log_message(message, level="INFO"):
-    with open("process_log.txt", "a") as log_file:
+    with open("process_log.txt", "a", encoding="utf-8") as log_file:
         log_file.write(f"{level}: {message}\n")
     print(message)
 
@@ -22,9 +22,6 @@ def zip_folder(folder_path, zip_file_path):
                     file_path = os.path.join(root, file)
                     arcname = os.path.relpath(file_path, start=folder_path)
                     zipf.write(file_path, arcname)
-        log_message(
-            f"'{os.path.basename(folder_path)}'フォルダを圧縮しました: {zip_file_path}"
-        )
         return True
     except Exception as e:
         error_message = f"圧縮中にエラーが発生しました: {e}\n{traceback.format_exc()}"
@@ -35,7 +32,6 @@ def zip_folder(folder_path, zip_file_path):
 def delete_folder(folder_path):
     try:
         shutil.rmtree(folder_path)
-        log_message(f"'{os.path.basename(folder_path)}'フォルダを削除しました。")
         return True
     except Exception as e:
         error_message = f"フォルダ '{os.path.basename(folder_path)}' の削除中にエラーが発生しました: {e}\n{traceback.format_exc()}"
@@ -43,7 +39,7 @@ def delete_folder(folder_path):
         return False
 
 
-def process_folder(directory_path, folder_name, progress_bar):
+def process_folder(directory_path, folder_name, progress_queue, total_folders):
     folder_path = os.path.join(directory_path, folder_name)
     zip_file_path = generate_unique_zip_path(directory_path, folder_name)
 
@@ -52,10 +48,14 @@ def process_folder(directory_path, folder_name, progress_bar):
             log_message(
                 f"'{folder_name}'フォルダの削除に失敗しました。", level="WARNING"
             )
-    else:
-        log_message(f"'{folder_name}'フォルダの圧縮に失敗しました。", level="WARNING")
 
-    progress_bar.update(1)
+    progress_queue.put(1)  # 進捗を通知
+    completed = progress_queue.qsize()
+    percent = (completed / total_folders) * 100
+
+    # 進捗の出力
+    progress_message = f"フォルダ圧縮中 {completed} / {total_folders} ({percent:.1f}%) "
+    log_message(progress_message)  # ログにも書き込む
 
 
 def generate_unique_zip_path(directory_path, folder_name):
@@ -68,17 +68,26 @@ def generate_unique_zip_path(directory_path, folder_name):
 
 
 def zip_folders_in_directory(directory_path):
-    folder_names = [
-        folder_name
-        for folder_name in os.listdir(directory_path)
-        if os.path.isdir(os.path.join(directory_path, folder_name))
-    ]
+    folder_names = sorted(
+        [
+            folder_name
+            for folder_name in os.listdir(directory_path)
+            if os.path.isdir(os.path.join(directory_path, folder_name))
+        ]
+    )
 
-    with ThreadPoolExecutor() as executor, tqdm(
-        total=len(folder_names), desc="フォルダの処理進捗"
-    ) as progress_bar:
+    total = len(folder_names)
+    progress_queue = queue.Queue()
+
+    log_message("start...")  # ログにも出力
+
+    with ThreadPoolExecutor() as executor:
         for folder_name in folder_names:
-            executor.submit(process_folder, directory_path, folder_name, progress_bar)
+            executor.submit(
+                process_folder, directory_path, folder_name, progress_queue, total
+            )
+
+    log_message("...complete !!")  # 完了メッセージをログに書き込む
 
 
 def select_directory():
