@@ -8,13 +8,13 @@ import traceback
 import queue
 
 
-def log_message(message, level="INFO"):
+def log_message(message:str, level="INFO"):
     with open("process_log.txt", "a", encoding="utf-8") as log_file:
         log_file.write(f"{level}: {message}\n")
     print(message)
 
 
-def zip_folder(folder_path, zip_file_path):
+def zip_folder(folder_path:str, zip_file_path:str):
     try:
         with zipfile.ZipFile(zip_file_path, "w", zipfile.ZIP_DEFLATED) as zipf:
             for root, _, files in os.walk(folder_path):
@@ -29,7 +29,7 @@ def zip_folder(folder_path, zip_file_path):
         return False
 
 
-def delete_folder(folder_path):
+def delete_folder(folder_path:str):
     try:
         shutil.rmtree(folder_path)
         return True
@@ -39,7 +39,7 @@ def delete_folder(folder_path):
         return False
 
 
-def process_folder(directory_path, folder_name, progress_queue, total_folders):
+def process_folder(directory_path:str, folder_name:str, progress_queue:queue.Queue, total_folders:int):
     folder_path = os.path.join(directory_path, folder_name)
     zip_file_path = generate_unique_zip_path(directory_path, folder_name)
 
@@ -58,7 +58,7 @@ def process_folder(directory_path, folder_name, progress_queue, total_folders):
     log_message(progress_message)  # ログにも書き込む
 
 
-def generate_unique_zip_path(directory_path, folder_name):
+def generate_unique_zip_path(directory_path:str, folder_name:str):
     base_zip_file_path = os.path.join(directory_path, f"{folder_name}.zip")
     count = 1
     while os.path.exists(base_zip_file_path):
@@ -67,7 +67,7 @@ def generate_unique_zip_path(directory_path, folder_name):
     return base_zip_file_path
 
 
-def zip_folders_in_directory(directory_path):
+def zip_folders_in_directory(directory_path:str):
     folder_names = sorted(
         [
             folder_name
