@@ -1,6 +1,14 @@
 {
-"[python]": {
-    "editor.defaultFormatter": "ms-python.black-formatter",
-    "editor.formatOnSave": true
-    },
+    "editor.formatOnSave": true,  // セーブ時にコードフォーマット
+    "python.linting.enabled": true,
+    "python.linting.pylanceEnabled": true,
+    "python.linting.flake8Enabled": true,
+    "python.linting.mypyEnabled": true,
+    "python.formatting.provider": "black",  // Black をフォーマッタとして使用
+    "python.analysis.extraPaths": ["src"],  // 複数のモジュールがある場合に必要
+    "python.venvPath": "${workspaceFolder}/venvs",  // 環境パスを指定（オプション）
+    "[python]": {
+        "editor.tabSize": 4,  // タブサイズ（PEP 8 推奨値）
+        "editor.insertSpaces": true
+    }
 }
